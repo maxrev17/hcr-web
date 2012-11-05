@@ -1,14 +1,15 @@
 <?php
 
 require 'vendor/autoload.php';
+require 'Ticket.php';
 
 $app = new \Slim\Slim(array('debug' => true));
-$dave = function($id) use ($app) {
-    var_dump($app);
-};
 
-$app->get('/:id', function($id) use ($app) {
-    var_dump($id);
+
+$app->get('/:code', function($code) use ($app) {
+    $ticket = new Ticket();
+    $ticket->checkTicket($code);
+    $ticket->expireTicket($code);
 });
 
 $app->run();
