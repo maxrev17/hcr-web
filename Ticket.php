@@ -4,35 +4,42 @@ class Ticket {
     
     private $db;
     
+    
     public function __construct() 
     {
-        $this->db = new PDO('mysql:host=localhost;dbname=hcr;charset=utf8', 'web', 'robot');
+            //brip the constructor
     }
+   
     
-    public function checkTicket($code)
+    public static function getCodeFromTime ($integer)
     {
-        $sql = "SELECT * FROM tickets WHERE code = ? AND expired = ?";
-        $q = $this->db->prepare($sql);
-        $q->execute(array($code, false));
-
-        if($q->fetch()){
-            echo('ticket found and not expired <br>');
-        } else {
-            echo ('ticket does not exist or has expired <br>');
+        $base = 'abcdefghjkmnpqrstwxz23456789';
+        $length = strlen($base);
+        $out1='';
+        while($integer > $length - 1)
+        {
+            $out1 = $base[fmod($integer, $length)] . $out1;
+            $integer = floor( $integer / $length );
         }
-    }
-    
-    public function expireTicket($code)
-    {
-        $sql  = 'UPDATE tickets SET expired = ? WHERE code = ?';
-        $q = $this->db->prepare($sql);
-        $q->execute(array(true, $code));
+        $shorturl=$base[$integer] . $out1;
         
-        $this->checkTicket($code);
+        return $shorturl;
     }
+
     
- 
-    
+    public static function getTimeFromCode($string)
+    {
+        $base = 'abcdefghjkmnpqrstwxz23456789';
+        $length = strlen($base);
+        $size = strlen($string) - 1;
+        $string = str_split($string);
+        $out = strpos($base, array_pop($string));
+        foreach($string as $i => $char)
+        {
+            $out += strpos($base, $char) * pow($length, $size - $i);
+        }
+        return $out;
+    }    
 }
 
 ?>
