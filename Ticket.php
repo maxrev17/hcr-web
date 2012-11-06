@@ -12,10 +12,10 @@ class Ticket {
     public function checkTicket($code)
     {
         $sql = "SELECT * FROM tickets WHERE code = ? AND expired = ?";
-        $res = $this->db->prepare($sql);
-        $res->execute(array($code, false));
+        $q = $this->db->prepare($sql);
+        $q->execute(array($code, false));
 
-        if($res->fetch()){
+        if($q->fetch()){
             echo('ticket found and not expired <br>');
         } else {
             echo ('ticket does not exist or has expired <br>');
@@ -25,8 +25,8 @@ class Ticket {
     public function expireTicket($code)
     {
         $sql  = 'UPDATE tickets SET expired = ? WHERE code = ?';
-        $res = $this->db->prepare($sql);
-        $res->execute(array(true, $code));
+        $q = $this->db->prepare($sql);
+        $q->execute(array(true, $code));
         
         $this->checkTicket($code);
     }
