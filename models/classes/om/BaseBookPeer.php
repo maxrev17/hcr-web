@@ -35,17 +35,17 @@ abstract class BaseBookPeer
     /** the column name for the ID field */
     const ID = 'book.ID';
 
-    /** the column name for the TITLE field */
-    const TITLE = 'book.TITLE';
+    /** the column name for the CODE field */
+    const CODE = 'book.CODE';
 
-    /** the column name for the ISBN field */
-    const ISBN = 'book.ISBN';
+    /** the column name for the USED_AT field */
+    const USED_AT = 'book.USED_AT';
 
-    /** the column name for the PUBLISHER_ID field */
-    const PUBLISHER_ID = 'book.PUBLISHER_ID';
+    /** the column name for the CREATED_AT field */
+    const CREATED_AT = 'book.CREATED_AT';
 
-    /** the column name for the AUTHOR_ID field */
-    const AUTHOR_ID = 'book.AUTHOR_ID';
+    /** the column name for the UPDATED_AT field */
+    const UPDATED_AT = 'book.UPDATED_AT';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -66,11 +66,11 @@ abstract class BaseBookPeer
      * e.g. BookPeer::$fieldNames[BookPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Title', 'ISBN', 'PublisherId', 'AuthorId', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'title', 'iSBN', 'publisherId', 'authorId', ),
-        BasePeer::TYPE_COLNAME => array (BookPeer::ID, BookPeer::TITLE, BookPeer::ISBN, BookPeer::PUBLISHER_ID, BookPeer::AUTHOR_ID, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'TITLE', 'ISBN', 'PUBLISHER_ID', 'AUTHOR_ID', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'title', 'isbn', 'publisher_id', 'author_id', ),
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Code', 'UsedAt', 'CreatedAt', 'UpdatedAt', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'code', 'usedAt', 'createdAt', 'updatedAt', ),
+        BasePeer::TYPE_COLNAME => array (BookPeer::ID, BookPeer::CODE, BookPeer::USED_AT, BookPeer::CREATED_AT, BookPeer::UPDATED_AT, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'CODE', 'USED_AT', 'CREATED_AT', 'UPDATED_AT', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'code', 'used_at', 'created_at', 'updated_at', ),
         BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
     );
 
@@ -81,11 +81,11 @@ abstract class BaseBookPeer
      * e.g. BookPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Title' => 1, 'ISBN' => 2, 'PublisherId' => 3, 'AuthorId' => 4, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'title' => 1, 'iSBN' => 2, 'publisherId' => 3, 'authorId' => 4, ),
-        BasePeer::TYPE_COLNAME => array (BookPeer::ID => 0, BookPeer::TITLE => 1, BookPeer::ISBN => 2, BookPeer::PUBLISHER_ID => 3, BookPeer::AUTHOR_ID => 4, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'TITLE' => 1, 'ISBN' => 2, 'PUBLISHER_ID' => 3, 'AUTHOR_ID' => 4, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'title' => 1, 'isbn' => 2, 'publisher_id' => 3, 'author_id' => 4, ),
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Code' => 1, 'UsedAt' => 2, 'CreatedAt' => 3, 'UpdatedAt' => 4, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'code' => 1, 'usedAt' => 2, 'createdAt' => 3, 'updatedAt' => 4, ),
+        BasePeer::TYPE_COLNAME => array (BookPeer::ID => 0, BookPeer::CODE => 1, BookPeer::USED_AT => 2, BookPeer::CREATED_AT => 3, BookPeer::UPDATED_AT => 4, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'CODE' => 1, 'USED_AT' => 2, 'CREATED_AT' => 3, 'UPDATED_AT' => 4, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'code' => 1, 'used_at' => 2, 'created_at' => 3, 'updated_at' => 4, ),
         BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
     );
 
@@ -161,16 +161,16 @@ abstract class BaseBookPeer
     {
         if (null === $alias) {
             $criteria->addSelectColumn(BookPeer::ID);
-            $criteria->addSelectColumn(BookPeer::TITLE);
-            $criteria->addSelectColumn(BookPeer::ISBN);
-            $criteria->addSelectColumn(BookPeer::PUBLISHER_ID);
-            $criteria->addSelectColumn(BookPeer::AUTHOR_ID);
+            $criteria->addSelectColumn(BookPeer::CODE);
+            $criteria->addSelectColumn(BookPeer::USED_AT);
+            $criteria->addSelectColumn(BookPeer::CREATED_AT);
+            $criteria->addSelectColumn(BookPeer::UPDATED_AT);
         } else {
             $criteria->addSelectColumn($alias . '.ID');
-            $criteria->addSelectColumn($alias . '.TITLE');
-            $criteria->addSelectColumn($alias . '.ISBN');
-            $criteria->addSelectColumn($alias . '.PUBLISHER_ID');
-            $criteria->addSelectColumn($alias . '.AUTHOR_ID');
+            $criteria->addSelectColumn($alias . '.CODE');
+            $criteria->addSelectColumn($alias . '.USED_AT');
+            $criteria->addSelectColumn($alias . '.CREATED_AT');
+            $criteria->addSelectColumn($alias . '.UPDATED_AT');
         }
     }
 

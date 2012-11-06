@@ -7,11 +7,11 @@ class Ticket {
     
     public function __construct() 
     {
-            //brip the constructor
+        //brip the constructor
     }
    
     
-    public static function getCodeFromTime ($integer)
+    public static function getShortcode ($integer)
     {
         $base = 'abcdefghjkmnpqrstwxz23456789';
         $length = strlen($base);
@@ -27,7 +27,7 @@ class Ticket {
     }
 
     
-    public static function getTimeFromCode($string)
+    public static function getPlaintext($string)
     {
         $base = 'abcdefghjkmnpqrstwxz23456789';
         $length = strlen($base);

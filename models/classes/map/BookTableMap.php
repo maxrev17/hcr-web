@@ -39,10 +39,10 @@ class BookTableMap extends TableMap
         $this->setUseIdGenerator(true);
         // columns
         $this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('TITLE', 'Title', 'VARCHAR', true, 255, null);
-        $this->addColumn('ISBN', 'ISBN', 'VARCHAR', true, 24, null);
-        $this->addColumn('PUBLISHER_ID', 'PublisherId', 'INTEGER', true, null, null);
-        $this->addColumn('AUTHOR_ID', 'AuthorId', 'INTEGER', true, null, null);
+        $this->addColumn('CODE', 'Code', 'VARCHAR', true, 255, null);
+        $this->addColumn('USED_AT', 'UsedAt', 'INTEGER', true, null, null);
+        $this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
+        $this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         // validators
     } // initialize()
 
@@ -52,5 +52,18 @@ class BookTableMap extends TableMap
     public function buildRelations()
     {
     } // buildRelations()
+
+    /**
+     *
+     * Gets the list of behaviors registered for this table
+     *
+     * @return array Associative array (name => parameters) of behaviors
+     */
+    public function getBehaviors()
+    {
+        return array(
+            'timestampable' => array('create_column' => 'created_at', 'update_column' => 'updated_at', 'disable_updated_at' => 'false', ),
+        );
+    } // getBehaviors()
 
 } // BookTableMap

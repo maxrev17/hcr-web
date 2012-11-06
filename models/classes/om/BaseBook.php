@@ -36,28 +36,28 @@ abstract class BaseBook extends BaseObject implements Persistent
     protected $id;
 
     /**
-     * The value for the title field.
+     * The value for the code field.
      * @var        string
      */
-    protected $title;
+    protected $code;
 
     /**
-     * The value for the isbn field.
+     * The value for the used_at field.
+     * @var        int
+     */
+    protected $used_at;
+
+    /**
+     * The value for the created_at field.
      * @var        string
      */
-    protected $isbn;
+    protected $created_at;
 
     /**
-     * The value for the publisher_id field.
-     * @var        int
+     * The value for the updated_at field.
+     * @var        string
      */
-    protected $publisher_id;
-
-    /**
-     * The value for the author_id field.
-     * @var        int
-     */
-    protected $author_id;
+    protected $updated_at;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -84,43 +84,97 @@ abstract class BaseBook extends BaseObject implements Persistent
     }
 
     /**
-     * Get the [title] column value.
+     * Get the [code] column value.
      *
      * @return string
      */
-    public function getTitle()
+    public function getCode()
     {
-        return $this->title;
+        return $this->code;
     }
 
     /**
-     * Get the [isbn] column value.
-     *
-     * @return string
-     */
-    public function getISBN()
-    {
-        return $this->isbn;
-    }
-
-    /**
-     * Get the [publisher_id] column value.
+     * Get the [used_at] column value.
      *
      * @return int
      */
-    public function getPublisherId()
+    public function getUsedAt()
     {
-        return $this->publisher_id;
+        return $this->used_at;
     }
 
     /**
-     * Get the [author_id] column value.
+     * Get the [optionally formatted] temporal [created_at] column value.
      *
-     * @return int
+     *
+     * @param string $format The date/time format string (either date()-style or strftime()-style).
+     *				 If format is null, then the raw DateTime object will be returned.
+     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
+     * @throws PropelException - if unable to parse/validate the date/time value.
      */
-    public function getAuthorId()
+    public function getCreatedAt($format = 'Y-m-d H:i:s')
     {
-        return $this->author_id;
+        if ($this->created_at === null) {
+            return null;
+        }
+
+        if ($this->created_at === '0000-00-00 00:00:00') {
+            // while technically this is not a default value of null,
+            // this seems to be closest in meaning.
+            return null;
+        } else {
+            try {
+                $dt = new DateTime($this->created_at);
+            } catch (Exception $x) {
+                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
+            }
+        }
+
+        if ($format === null) {
+            // Because propel.useDateTimeClass is true, we return a DateTime object.
+            return $dt;
+        } elseif (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        } else {
+            return $dt->format($format);
+        }
+    }
+
+    /**
+     * Get the [optionally formatted] temporal [updated_at] column value.
+     *
+     *
+     * @param string $format The date/time format string (either date()-style or strftime()-style).
+     *				 If format is null, then the raw DateTime object will be returned.
+     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00 00:00:00
+     * @throws PropelException - if unable to parse/validate the date/time value.
+     */
+    public function getUpdatedAt($format = 'Y-m-d H:i:s')
+    {
+        if ($this->updated_at === null) {
+            return null;
+        }
+
+        if ($this->updated_at === '0000-00-00 00:00:00') {
+            // while technically this is not a default value of null,
+            // this seems to be closest in meaning.
+            return null;
+        } else {
+            try {
+                $dt = new DateTime($this->updated_at);
+            } catch (Exception $x) {
+                throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->updated_at, true), $x);
+            }
+        }
+
+        if ($format === null) {
+            // Because propel.useDateTimeClass is true, we return a DateTime object.
+            return $dt;
+        } elseif (strpos($format, '%') !== false) {
+            return strftime($format, $dt->format('U'));
+        } else {
+            return $dt->format($format);
+        }
     }
 
     /**
@@ -145,88 +199,92 @@ abstract class BaseBook extends BaseObject implements Persistent
     } // setId()
 
     /**
-     * Set the value of [title] column.
+     * Set the value of [code] column.
      *
      * @param string $v new value
      * @return Book The current object (for fluent API support)
      */
-    public function setTitle($v)
+    public function setCode($v)
     {
         if ($v !== null) {
             $v = (string) $v;
         }
 
-        if ($this->title !== $v) {
-            $this->title = $v;
-            $this->modifiedColumns[] = BookPeer::TITLE;
+        if ($this->code !== $v) {
+            $this->code = $v;
+            $this->modifiedColumns[] = BookPeer::CODE;
         }
 
 
         return $this;
-    } // setTitle()
+    } // setCode()
 
     /**
-     * Set the value of [isbn] column.
-     *
-     * @param string $v new value
-     * @return Book The current object (for fluent API support)
-     */
-    public function setISBN($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->isbn !== $v) {
-            $this->isbn = $v;
-            $this->modifiedColumns[] = BookPeer::ISBN;
-        }
-
-
-        return $this;
-    } // setISBN()
-
-    /**
-     * Set the value of [publisher_id] column.
+     * Set the value of [used_at] column.
      *
      * @param int $v new value
      * @return Book The current object (for fluent API support)
      */
-    public function setPublisherId($v)
+    public function setUsedAt($v)
     {
         if ($v !== null) {
             $v = (int) $v;
         }
 
-        if ($this->publisher_id !== $v) {
-            $this->publisher_id = $v;
-            $this->modifiedColumns[] = BookPeer::PUBLISHER_ID;
+        if ($this->used_at !== $v) {
+            $this->used_at = $v;
+            $this->modifiedColumns[] = BookPeer::USED_AT;
         }
 
 
         return $this;
-    } // setPublisherId()
+    } // setUsedAt()
 
     /**
-     * Set the value of [author_id] column.
+     * Sets the value of [created_at] column to a normalized version of the date/time value specified.
      *
-     * @param int $v new value
+     * @param mixed $v string, integer (timestamp), or DateTime value.
+     *               Empty strings are treated as null.
      * @return Book The current object (for fluent API support)
      */
-    public function setAuthorId($v)
+    public function setCreatedAt($v)
     {
-        if ($v !== null) {
-            $v = (int) $v;
-        }
-
-        if ($this->author_id !== $v) {
-            $this->author_id = $v;
-            $this->modifiedColumns[] = BookPeer::AUTHOR_ID;
-        }
+        $dt = PropelDateTime::newInstance($v, null, 'DateTime');
+        if ($this->created_at !== null || $dt !== null) {
+            $currentDateAsString = ($this->created_at !== null && $tmpDt = new DateTime($this->created_at)) ? $tmpDt->format('Y-m-d H:i:s') : null;
+            $newDateAsString = $dt ? $dt->format('Y-m-d H:i:s') : null;
+            if ($currentDateAsString !== $newDateAsString) {
+                $this->created_at = $newDateAsString;
+                $this->modifiedColumns[] = BookPeer::CREATED_AT;
+            }
+        } // if either are not null
 
 
         return $this;
-    } // setAuthorId()
+    } // setCreatedAt()
+
+    /**
+     * Sets the value of [updated_at] column to a normalized version of the date/time value specified.
+     *
+     * @param mixed $v string, integer (timestamp), or DateTime value.
+     *               Empty strings are treated as null.
+     * @return Book The current object (for fluent API support)
+     */
+    public function setUpdatedAt($v)
+    {
+        $dt = PropelDateTime::newInstance($v, null, 'DateTime');
+        if ($this->updated_at !== null || $dt !== null) {
+            $currentDateAsString = ($this->updated_at !== null && $tmpDt = new DateTime($this->updated_at)) ? $tmpDt->format('Y-m-d H:i:s') : null;
+            $newDateAsString = $dt ? $dt->format('Y-m-d H:i:s') : null;
+            if ($currentDateAsString !== $newDateAsString) {
+                $this->updated_at = $newDateAsString;
+                $this->modifiedColumns[] = BookPeer::UPDATED_AT;
+            }
+        } // if either are not null
+
+
+        return $this;
+    } // setUpdatedAt()
 
     /**
      * Indicates whether the columns in this object are only set to default values.
@@ -261,10 +319,10 @@ abstract class BaseBook extends BaseObject implements Persistent
         try {
 
             $this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
-            $this->title = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
-            $this->isbn = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-            $this->publisher_id = ($row[$startcol + 3] !== null) ? (int) $row[$startcol + 3] : null;
-            $this->author_id = ($row[$startcol + 4] !== null) ? (int) $row[$startcol + 4] : null;
+            $this->code = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
+            $this->used_at = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
+            $this->created_at = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+            $this->updated_at = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -407,8 +465,19 @@ abstract class BaseBook extends BaseObject implements Persistent
             $ret = $this->preSave($con);
             if ($isInsert) {
                 $ret = $ret && $this->preInsert($con);
+                // timestampable behavior
+                if (!$this->isColumnModified(BookPeer::CREATED_AT)) {
+                    $this->setCreatedAt(time());
+                }
+                if (!$this->isColumnModified(BookPeer::UPDATED_AT)) {
+                    $this->setUpdatedAt(time());
+                }
             } else {
                 $ret = $ret && $this->preUpdate($con);
+                // timestampable behavior
+                if ($this->isModified() && !$this->isColumnModified(BookPeer::UPDATED_AT)) {
+                    $this->setUpdatedAt(time());
+                }
             }
             if ($ret) {
                 $affectedRows = $this->doSave($con);
@@ -488,17 +557,17 @@ abstract class BaseBook extends BaseObject implements Persistent
         if ($this->isColumnModified(BookPeer::ID)) {
             $modifiedColumns[':p' . $index++]  = '`ID`';
         }
-        if ($this->isColumnModified(BookPeer::TITLE)) {
-            $modifiedColumns[':p' . $index++]  = '`TITLE`';
+        if ($this->isColumnModified(BookPeer::CODE)) {
+            $modifiedColumns[':p' . $index++]  = '`CODE`';
         }
-        if ($this->isColumnModified(BookPeer::ISBN)) {
-            $modifiedColumns[':p' . $index++]  = '`ISBN`';
+        if ($this->isColumnModified(BookPeer::USED_AT)) {
+            $modifiedColumns[':p' . $index++]  = '`USED_AT`';
         }
-        if ($this->isColumnModified(BookPeer::PUBLISHER_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`PUBLISHER_ID`';
+        if ($this->isColumnModified(BookPeer::CREATED_AT)) {
+            $modifiedColumns[':p' . $index++]  = '`CREATED_AT`';
         }
-        if ($this->isColumnModified(BookPeer::AUTHOR_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`AUTHOR_ID`';
+        if ($this->isColumnModified(BookPeer::UPDATED_AT)) {
+            $modifiedColumns[':p' . $index++]  = '`UPDATED_AT`';
         }
 
         $sql = sprintf(
@@ -514,17 +583,17 @@ abstract class BaseBook extends BaseObject implements Persistent
                     case '`ID`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`TITLE`':
-                        $stmt->bindValue($identifier, $this->title, PDO::PARAM_STR);
+                    case '`CODE`':
+                        $stmt->bindValue($identifier, $this->code, PDO::PARAM_STR);
                         break;
-                    case '`ISBN`':
-                        $stmt->bindValue($identifier, $this->isbn, PDO::PARAM_STR);
+                    case '`USED_AT`':
+                        $stmt->bindValue($identifier, $this->used_at, PDO::PARAM_INT);
                         break;
-                    case '`PUBLISHER_ID`':
-                        $stmt->bindValue($identifier, $this->publisher_id, PDO::PARAM_INT);
+                    case '`CREATED_AT`':
+                        $stmt->bindValue($identifier, $this->created_at, PDO::PARAM_STR);
                         break;
-                    case '`AUTHOR_ID`':
-                        $stmt->bindValue($identifier, $this->author_id, PDO::PARAM_INT);
+                    case '`UPDATED_AT`':
+                        $stmt->bindValue($identifier, $this->updated_at, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -664,16 +733,16 @@ abstract class BaseBook extends BaseObject implements Persistent
                 return $this->getId();
                 break;
             case 1:
-                return $this->getTitle();
+                return $this->getCode();
                 break;
             case 2:
-                return $this->getISBN();
+                return $this->getUsedAt();
                 break;
             case 3:
-                return $this->getPublisherId();
+                return $this->getCreatedAt();
                 break;
             case 4:
-                return $this->getAuthorId();
+                return $this->getUpdatedAt();
                 break;
             default:
                 return null;
@@ -704,10 +773,10 @@ abstract class BaseBook extends BaseObject implements Persistent
         $keys = BookPeer::getFieldNames($keyType);
         $result = array(
             $keys[0] => $this->getId(),
-            $keys[1] => $this->getTitle(),
-            $keys[2] => $this->getISBN(),
-            $keys[3] => $this->getPublisherId(),
-            $keys[4] => $this->getAuthorId(),
+            $keys[1] => $this->getCode(),
+            $keys[2] => $this->getUsedAt(),
+            $keys[3] => $this->getCreatedAt(),
+            $keys[4] => $this->getUpdatedAt(),
         );
 
         return $result;
@@ -746,16 +815,16 @@ abstract class BaseBook extends BaseObject implements Persistent
                 $this->setId($value);
                 break;
             case 1:
-                $this->setTitle($value);
+                $this->setCode($value);
                 break;
             case 2:
-                $this->setISBN($value);
+                $this->setUsedAt($value);
                 break;
             case 3:
-                $this->setPublisherId($value);
+                $this->setCreatedAt($value);
                 break;
             case 4:
-                $this->setAuthorId($value);
+                $this->setUpdatedAt($value);
                 break;
         } // switch()
     }
@@ -782,10 +851,10 @@ abstract class BaseBook extends BaseObject implements Persistent
         $keys = BookPeer::getFieldNames($keyType);
 
         if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
-        if (array_key_exists($keys[1], $arr)) $this->setTitle($arr[$keys[1]]);
-        if (array_key_exists($keys[2], $arr)) $this->setISBN($arr[$keys[2]]);
-        if (array_key_exists($keys[3], $arr)) $this->setPublisherId($arr[$keys[3]]);
-        if (array_key_exists($keys[4], $arr)) $this->setAuthorId($arr[$keys[4]]);
+        if (array_key_exists($keys[1], $arr)) $this->setCode($arr[$keys[1]]);
+        if (array_key_exists($keys[2], $arr)) $this->setUsedAt($arr[$keys[2]]);
+        if (array_key_exists($keys[3], $arr)) $this->setCreatedAt($arr[$keys[3]]);
+        if (array_key_exists($keys[4], $arr)) $this->setUpdatedAt($arr[$keys[4]]);
     }
 
     /**
@@ -798,10 +867,10 @@ abstract class BaseBook extends BaseObject implements Persistent
         $criteria = new Criteria(BookPeer::DATABASE_NAME);
 
         if ($this->isColumnModified(BookPeer::ID)) $criteria->add(BookPeer::ID, $this->id);
-        if ($this->isColumnModified(BookPeer::TITLE)) $criteria->add(BookPeer::TITLE, $this->title);
-        if ($this->isColumnModified(BookPeer::ISBN)) $criteria->add(BookPeer::ISBN, $this->isbn);
-        if ($this->isColumnModified(BookPeer::PUBLISHER_ID)) $criteria->add(BookPeer::PUBLISHER_ID, $this->publisher_id);
-        if ($this->isColumnModified(BookPeer::AUTHOR_ID)) $criteria->add(BookPeer::AUTHOR_ID, $this->author_id);
+        if ($this->isColumnModified(BookPeer::CODE)) $criteria->add(BookPeer::CODE, $this->code);
+        if ($this->isColumnModified(BookPeer::USED_AT)) $criteria->add(BookPeer::USED_AT, $this->used_at);
+        if ($this->isColumnModified(BookPeer::CREATED_AT)) $criteria->add(BookPeer::CREATED_AT, $this->created_at);
+        if ($this->isColumnModified(BookPeer::UPDATED_AT)) $criteria->add(BookPeer::UPDATED_AT, $this->updated_at);
 
         return $criteria;
     }
@@ -865,10 +934,10 @@ abstract class BaseBook extends BaseObject implements Persistent
      */
     public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
     {
-        $copyObj->setTitle($this->getTitle());
-        $copyObj->setISBN($this->getISBN());
-        $copyObj->setPublisherId($this->getPublisherId());
-        $copyObj->setAuthorId($this->getAuthorId());
+        $copyObj->setCode($this->getCode());
+        $copyObj->setUsedAt($this->getUsedAt());
+        $copyObj->setCreatedAt($this->getCreatedAt());
+        $copyObj->setUpdatedAt($this->getUpdatedAt());
         if ($makeNew) {
             $copyObj->setNew(true);
             $copyObj->setId(NULL); // this is a auto-increment column, so set to default value
@@ -921,10 +990,10 @@ abstract class BaseBook extends BaseObject implements Persistent
     public function clear()
     {
         $this->id = null;
-        $this->title = null;
-        $this->isbn = null;
-        $this->publisher_id = null;
-        $this->author_id = null;
+        $this->code = null;
+        $this->used_at = null;
+        $this->created_at = null;
+        $this->updated_at = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
         $this->clearAllReferences();
@@ -967,6 +1036,20 @@ abstract class BaseBook extends BaseObject implements Persistent
     public function isAlreadyInSave()
     {
         return $this->alreadyInSave;
+    }
+
+    // timestampable behavior
+
+    /**
+     * Mark the current object so that the update date doesn't get updated during next save
+     *
+     * @return     Book The current object (for fluent API support)
+     */
+    public function keepUpdateDateUnchanged()
+    {
+        $this->modifiedColumns[] = BookPeer::UPDATED_AT;
+
+        return $this;
     }
 
 }

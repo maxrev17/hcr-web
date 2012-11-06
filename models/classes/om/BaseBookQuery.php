@@ -7,16 +7,16 @@
  *
  *
  * @method BookQuery orderById($order = Criteria::ASC) Order by the id column
- * @method BookQuery orderByTitle($order = Criteria::ASC) Order by the title column
- * @method BookQuery orderByISBN($order = Criteria::ASC) Order by the isbn column
- * @method BookQuery orderByPublisherId($order = Criteria::ASC) Order by the publisher_id column
- * @method BookQuery orderByAuthorId($order = Criteria::ASC) Order by the author_id column
+ * @method BookQuery orderByCode($order = Criteria::ASC) Order by the code column
+ * @method BookQuery orderByUsedAt($order = Criteria::ASC) Order by the used_at column
+ * @method BookQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
+ * @method BookQuery orderByUpdatedAt($order = Criteria::ASC) Order by the updated_at column
  *
  * @method BookQuery groupById() Group by the id column
- * @method BookQuery groupByTitle() Group by the title column
- * @method BookQuery groupByISBN() Group by the isbn column
- * @method BookQuery groupByPublisherId() Group by the publisher_id column
- * @method BookQuery groupByAuthorId() Group by the author_id column
+ * @method BookQuery groupByCode() Group by the code column
+ * @method BookQuery groupByUsedAt() Group by the used_at column
+ * @method BookQuery groupByCreatedAt() Group by the created_at column
+ * @method BookQuery groupByUpdatedAt() Group by the updated_at column
  *
  * @method BookQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method BookQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -26,16 +26,16 @@
  * @method Book findOneOrCreate(PropelPDO $con = null) Return the first Book matching the query, or a new Book object populated from the query conditions when no match is found
  *
  * @method Book findOneById(int $id) Return the first Book filtered by the id column
- * @method Book findOneByTitle(string $title) Return the first Book filtered by the title column
- * @method Book findOneByISBN(string $isbn) Return the first Book filtered by the isbn column
- * @method Book findOneByPublisherId(int $publisher_id) Return the first Book filtered by the publisher_id column
- * @method Book findOneByAuthorId(int $author_id) Return the first Book filtered by the author_id column
+ * @method Book findOneByCode(string $code) Return the first Book filtered by the code column
+ * @method Book findOneByUsedAt(int $used_at) Return the first Book filtered by the used_at column
+ * @method Book findOneByCreatedAt(string $created_at) Return the first Book filtered by the created_at column
+ * @method Book findOneByUpdatedAt(string $updated_at) Return the first Book filtered by the updated_at column
  *
  * @method array findById(int $id) Return Book objects filtered by the id column
- * @method array findByTitle(string $title) Return Book objects filtered by the title column
- * @method array findByISBN(string $isbn) Return Book objects filtered by the isbn column
- * @method array findByPublisherId(int $publisher_id) Return Book objects filtered by the publisher_id column
- * @method array findByAuthorId(int $author_id) Return Book objects filtered by the author_id column
+ * @method array findByCode(string $code) Return Book objects filtered by the code column
+ * @method array findByUsedAt(int $used_at) Return Book objects filtered by the used_at column
+ * @method array findByCreatedAt(string $created_at) Return Book objects filtered by the created_at column
+ * @method array findByUpdatedAt(string $updated_at) Return Book objects filtered by the updated_at column
  *
  * @package    propel.generator..om
  */
@@ -125,7 +125,7 @@ abstract class BaseBookQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `ID`, `TITLE`, `ISBN`, `PUBLISHER_ID`, `AUTHOR_ID` FROM `book` WHERE `ID` = :p0';
+        $sql = 'SELECT `ID`, `CODE`, `USED_AT`, `CREATED_AT`, `UPDATED_AT` FROM `book` WHERE `ID` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -242,74 +242,45 @@ abstract class BaseBookQuery extends ModelCriteria
     }
 
     /**
-     * Filter the query on the title column
+     * Filter the query on the code column
      *
      * Example usage:
      * <code>
-     * $query->filterByTitle('fooValue');   // WHERE title = 'fooValue'
-     * $query->filterByTitle('%fooValue%'); // WHERE title LIKE '%fooValue%'
+     * $query->filterByCode('fooValue');   // WHERE code = 'fooValue'
+     * $query->filterByCode('%fooValue%'); // WHERE code LIKE '%fooValue%'
      * </code>
      *
-     * @param     string $title The value to use as filter.
+     * @param     string $code The value to use as filter.
      *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return BookQuery The current query, for fluid interface
      */
-    public function filterByTitle($title = null, $comparison = null)
+    public function filterByCode($code = null, $comparison = null)
     {
         if (null === $comparison) {
-            if (is_array($title)) {
+            if (is_array($code)) {
                 $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $title)) {
-                $title = str_replace('*', '%', $title);
+            } elseif (preg_match('/[\%\*]/', $code)) {
+                $code = str_replace('*', '%', $code);
                 $comparison = Criteria::LIKE;
             }
         }
 
-        return $this->addUsingAlias(BookPeer::TITLE, $title, $comparison);
+        return $this->addUsingAlias(BookPeer::CODE, $code, $comparison);
     }
 
     /**
-     * Filter the query on the isbn column
+     * Filter the query on the used_at column
      *
      * Example usage:
      * <code>
-     * $query->filterByISBN('fooValue');   // WHERE isbn = 'fooValue'
-     * $query->filterByISBN('%fooValue%'); // WHERE isbn LIKE '%fooValue%'
+     * $query->filterByUsedAt(1234); // WHERE used_at = 1234
+     * $query->filterByUsedAt(array(12, 34)); // WHERE used_at IN (12, 34)
+     * $query->filterByUsedAt(array('min' => 12)); // WHERE used_at > 12
      * </code>
      *
-     * @param     string $iSBN The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return BookQuery The current query, for fluid interface
-     */
-    public function filterByISBN($iSBN = null, $comparison = null)
-    {
-        if (null === $comparison) {
-            if (is_array($iSBN)) {
-                $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $iSBN)) {
-                $iSBN = str_replace('*', '%', $iSBN);
-                $comparison = Criteria::LIKE;
-            }
-        }
-
-        return $this->addUsingAlias(BookPeer::ISBN, $iSBN, $comparison);
-    }
-
-    /**
-     * Filter the query on the publisher_id column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByPublisherId(1234); // WHERE publisher_id = 1234
-     * $query->filterByPublisherId(array(12, 34)); // WHERE publisher_id IN (12, 34)
-     * $query->filterByPublisherId(array('min' => 12)); // WHERE publisher_id > 12
-     * </code>
-     *
-     * @param     mixed $publisherId The value to use as filter.
+     * @param     mixed $usedAt The value to use as filter.
      *              Use scalar values for equality.
      *              Use array values for in_array() equivalent.
      *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
@@ -317,16 +288,16 @@ abstract class BaseBookQuery extends ModelCriteria
      *
      * @return BookQuery The current query, for fluid interface
      */
-    public function filterByPublisherId($publisherId = null, $comparison = null)
+    public function filterByUsedAt($usedAt = null, $comparison = null)
     {
-        if (is_array($publisherId)) {
+        if (is_array($usedAt)) {
             $useMinMax = false;
-            if (isset($publisherId['min'])) {
-                $this->addUsingAlias(BookPeer::PUBLISHER_ID, $publisherId['min'], Criteria::GREATER_EQUAL);
+            if (isset($usedAt['min'])) {
+                $this->addUsingAlias(BookPeer::USED_AT, $usedAt['min'], Criteria::GREATER_EQUAL);
                 $useMinMax = true;
             }
-            if (isset($publisherId['max'])) {
-                $this->addUsingAlias(BookPeer::PUBLISHER_ID, $publisherId['max'], Criteria::LESS_EQUAL);
+            if (isset($usedAt['max'])) {
+                $this->addUsingAlias(BookPeer::USED_AT, $usedAt['max'], Criteria::LESS_EQUAL);
                 $useMinMax = true;
             }
             if ($useMinMax) {
@@ -337,20 +308,22 @@ abstract class BaseBookQuery extends ModelCriteria
             }
         }
 
-        return $this->addUsingAlias(BookPeer::PUBLISHER_ID, $publisherId, $comparison);
+        return $this->addUsingAlias(BookPeer::USED_AT, $usedAt, $comparison);
     }
 
     /**
-     * Filter the query on the author_id column
+     * Filter the query on the created_at column
      *
      * Example usage:
      * <code>
-     * $query->filterByAuthorId(1234); // WHERE author_id = 1234
-     * $query->filterByAuthorId(array(12, 34)); // WHERE author_id IN (12, 34)
-     * $query->filterByAuthorId(array('min' => 12)); // WHERE author_id > 12
+     * $query->filterByCreatedAt('2011-03-14'); // WHERE created_at = '2011-03-14'
+     * $query->filterByCreatedAt('now'); // WHERE created_at = '2011-03-14'
+     * $query->filterByCreatedAt(array('max' => 'yesterday')); // WHERE created_at > '2011-03-13'
      * </code>
      *
-     * @param     mixed $authorId The value to use as filter.
+     * @param     mixed $createdAt The value to use as filter.
+     *              Values can be integers (unix timestamps), DateTime objects, or strings.
+     *              Empty strings are treated as NULL.
      *              Use scalar values for equality.
      *              Use array values for in_array() equivalent.
      *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
@@ -358,16 +331,16 @@ abstract class BaseBookQuery extends ModelCriteria
      *
      * @return BookQuery The current query, for fluid interface
      */
-    public function filterByAuthorId($authorId = null, $comparison = null)
+    public function filterByCreatedAt($createdAt = null, $comparison = null)
     {
-        if (is_array($authorId)) {
+        if (is_array($createdAt)) {
             $useMinMax = false;
-            if (isset($authorId['min'])) {
-                $this->addUsingAlias(BookPeer::AUTHOR_ID, $authorId['min'], Criteria::GREATER_EQUAL);
+            if (isset($createdAt['min'])) {
+                $this->addUsingAlias(BookPeer::CREATED_AT, $createdAt['min'], Criteria::GREATER_EQUAL);
                 $useMinMax = true;
             }
-            if (isset($authorId['max'])) {
-                $this->addUsingAlias(BookPeer::AUTHOR_ID, $authorId['max'], Criteria::LESS_EQUAL);
+            if (isset($createdAt['max'])) {
+                $this->addUsingAlias(BookPeer::CREATED_AT, $createdAt['max'], Criteria::LESS_EQUAL);
                 $useMinMax = true;
             }
             if ($useMinMax) {
@@ -378,7 +351,50 @@ abstract class BaseBookQuery extends ModelCriteria
             }
         }
 
-        return $this->addUsingAlias(BookPeer::AUTHOR_ID, $authorId, $comparison);
+        return $this->addUsingAlias(BookPeer::CREATED_AT, $createdAt, $comparison);
+    }
+
+    /**
+     * Filter the query on the updated_at column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByUpdatedAt('2011-03-14'); // WHERE updated_at = '2011-03-14'
+     * $query->filterByUpdatedAt('now'); // WHERE updated_at = '2011-03-14'
+     * $query->filterByUpdatedAt(array('max' => 'yesterday')); // WHERE updated_at > '2011-03-13'
+     * </code>
+     *
+     * @param     mixed $updatedAt The value to use as filter.
+     *              Values can be integers (unix timestamps), DateTime objects, or strings.
+     *              Empty strings are treated as NULL.
+     *              Use scalar values for equality.
+     *              Use array values for in_array() equivalent.
+     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return BookQuery The current query, for fluid interface
+     */
+    public function filterByUpdatedAt($updatedAt = null, $comparison = null)
+    {
+        if (is_array($updatedAt)) {
+            $useMinMax = false;
+            if (isset($updatedAt['min'])) {
+                $this->addUsingAlias(BookPeer::UPDATED_AT, $updatedAt['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($updatedAt['max'])) {
+                $this->addUsingAlias(BookPeer::UPDATED_AT, $updatedAt['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+        }
+
+        return $this->addUsingAlias(BookPeer::UPDATED_AT, $updatedAt, $comparison);
     }
 
     /**
@@ -397,4 +413,69 @@ abstract class BaseBookQuery extends ModelCriteria
         return $this;
     }
 
+    // timestampable behavior
+
+    /**
+     * Filter by the latest updated
+     *
+     * @param      int $nbDays Maximum age of the latest update in days
+     *
+     * @return     BookQuery The current query, for fluid interface
+     */
+    public function recentlyUpdated($nbDays = 7)
+    {
+        return $this->addUsingAlias(BookPeer::UPDATED_AT, time() - $nbDays * 24 * 60 * 60, Criteria::GREATER_EQUAL);
+    }
+
+    /**
+     * Order by update date desc
+     *
+     * @return     BookQuery The current query, for fluid interface
+     */
+    public function lastUpdatedFirst()
+    {
+        return $this->addDescendingOrderByColumn(BookPeer::UPDATED_AT);
+    }
+
+    /**
+     * Order by update date asc
+     *
+     * @return     BookQuery The current query, for fluid interface
+     */
+    public function firstUpdatedFirst()
+    {
+        return $this->addAscendingOrderByColumn(BookPeer::UPDATED_AT);
+    }
+
+    /**
+     * Filter by the latest created
+     *
+     * @param      int $nbDays Maximum age of in days
+     *
+     * @return     BookQuery The current query, for fluid interface
+     */
+    public function recentlyCreated($nbDays = 7)
+    {
+        return $this->addUsingAlias(BookPeer::CREATED_AT, time() - $nbDays * 24 * 60 * 60, Criteria::GREATER_EQUAL);
+    }
+
+    /**
+     * Order by create date desc
+     *
+     * @return     BookQuery The current query, for fluid interface
+     */
+    public function lastCreatedFirst()
+    {
+        return $this->addDescendingOrderByColumn(BookPeer::CREATED_AT);
+    }
+
+    /**
+     * Order by create date asc
+     *
+     * @return     BookQuery The current query, for fluid interface
+     */
+    public function firstCreatedFirst()
+    {
+        return $this->addAscendingOrderByColumn(BookPeer::CREATED_AT);
+    }
 }
