@@ -1,6 +1,6 @@
 <?php
 
-class Ticket {
+class Utility {
     
     private $db;
     
