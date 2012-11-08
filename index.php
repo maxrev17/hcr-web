@@ -31,9 +31,9 @@ $app->get('/about', function() use ($app) {
     ));
 });
 
-$app->get('/favicon.ico', function() use ($app) {
-    return false;
-});
+//$app->get('/favicon.ico', function() use ($app) {
+//    return false;
+//});
 
 // Redeem ticket route
 $app->get('/:code', function($code) use ($app) {
