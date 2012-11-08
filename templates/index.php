@@ -6,7 +6,9 @@
 <?php
 echo '<h1>'.$title.'</h1>';
 echo '<br>';
-    foreach($output as $o){
-        echo $o->getId() .' '. $o->getCode() . '<br>';
-    }
+echo 'Your unique link code is ' . $ticketArray[0] . ', thanks for clicking!';
+echo '<br>';
+echo 'You have viewed your link ' . count($ticketArray) . ' times!';
+echo '<br>';
+echo 'You spoke with ROBOT at the following time, ' . date("F j, Y, g:i a", Utility::getDatetime($ticketArray[0]));
 ?>

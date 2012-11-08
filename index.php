@@ -17,12 +17,16 @@ date_default_timezone_set('Europe/London');
 $app->get('/:code', function($code) use ($app) {  
     $ticket = new Ticket();
     $ticket->setCode($code);
-    $ticket->setCreatedAt(Utility::getDatetime($code));
+    $ticket->setCreatedAt(Utility::getDateTime($code));
     $ticket->save();
     
     $output = TicketQuery::create()->findByCode($code);
     
-    $app->render('index.php', array('title' => 'Robaaadiks', 'output' => $output));
+    foreach($output as $o){
+        $ticketArray[] = $o->getCode();
+    }
+    
+    $app->render('index.php', array('title' => 'Robaaadiks', 'ticketArray' => $ticketArray));
     
 });
 
