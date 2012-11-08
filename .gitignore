@@ -170,4 +170,5 @@ composer.phar
 #propel
 om/
 map/
+config/
 
