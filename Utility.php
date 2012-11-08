@@ -1,15 +1,6 @@
 <?php
 
-class Utility {
-    
-    private $db;
-    
-    
-    public function __construct() 
-    {
-        //brip the constructor
-    }
-   
+class Utility {   
     
     public static function getShortcode ($integer)
     {
