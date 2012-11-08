@@ -171,4 +171,4 @@ composer.phar
 om/
 map/
 config/
-
+models/conf/hcr-conf.php
