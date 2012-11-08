@@ -31,17 +31,25 @@ $app->get('/about', function() use ($app) {
     ));
 });
 
+$app->get('/favicon.ico', function() use ($app) {
+    return false;
+});
+
 // Redeem ticket route
 $app->get('/:code', function($code) use ($app) {
     
     // Work out date from code 
-    $date = Utility::getDatetime($code);
+    $date = '135' . Utility::getDatetime($code);
     $formatted_date = date("F j, Y, g:i a", $date);
+
+    if($date > 1352414128 AND $date < 1356998400){
+        // invalid string
+    }
     
     // Create ticket in DB
     $ticket = new Ticket();
     $ticket->setCode($code);
-    $ticket->setCreatedAt($date);
+    $ticket->setPrintedAt($date);
     $ticket->save();
     
     // Retrieve all rows with same code
