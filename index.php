@@ -15,13 +15,19 @@ date_default_timezone_set('Europe/London');
 
 $app->get('/', function() use ($app) {
     $app->render('index.php', array(
-       'title' => 'RoboFlop' 
+       'title' => 'Robaadix' 
     ));
 });
 
 $app->get('/robot', function() use ($app) {
     $app->render('robot.php', array(
-        'title' => 'Robaaadix'
+        'title' => 'Robaadix'
+    ));
+});
+
+$app->get('/about', function() use ($app) {
+    $app->render('about.php', array(
+        'title' => 'Robaadix'
     ));
 });
 
@@ -52,7 +58,7 @@ $app->get('/:code', function($code) use ($app) {
     
     // Dispatch view with information
     $app->render('code.php', array(
-        'title' => 'RoboFlop',
+        'title' => 'Robaadix',
         'visit_code' => $visit_code,
         'visit_count' => $visit_count,
         'visit_date' => $visit_date

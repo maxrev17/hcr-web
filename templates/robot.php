@@ -3,7 +3,7 @@
 ?>
 
     <div class="container">
-        Latest location information on the robot.
+        Statistics etc.
     </div> <!-- /container -->
     
 <?php

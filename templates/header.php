@@ -41,9 +41,27 @@
           <a class="brand" href="../"><?php echo $title?></a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="../">Home</a></li>
-              <li><a href="/robot">Robot</a></li>
-              <li><a href="/contact">About</a></li>
+                <?php 
+                if($_SERVER['REQUEST_URI'] == '/') {
+                    echo '<li class="active"><a href="../">Home</a></li>';
+                } else {
+                    echo '<li><a href="../">Home</a></li>';
+                }
+                ?>
+                <?php 
+                if($_SERVER['REQUEST_URI'] == '/robot') {
+                    echo '<li class="active"><a href="/robot">Robot</a></li>';
+                } else {
+                    echo '<li><a href="/robot">Robot</a></li>';
+                }
+                ?>
+                 <?php 
+                if($_SERVER['REQUEST_URI'] == '/about') {
+                    echo '<li class="active"><a href="/about">About</a></li>';
+                } else {
+                    echo '<li><a href="/about">About</a></li>';
+                }
+                ?>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
