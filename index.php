@@ -1,7 +1,7 @@
 <?php
 
 require 'vendor/autoload.php';
-require 'Utility.php';
+require 'utility.php';
 require_once 'propel/Propel.php';
 
 Propel::init("models/conf/hcr-conf.php");
