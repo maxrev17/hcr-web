@@ -15,7 +15,7 @@
       }
     </style>
     <link href="includes/css/bootstrap-responsive.css" rel="stylesheet">
-
+    
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -42,8 +42,8 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="../">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="/robot">Robot</a></li>
+              <li><a href="/contact">About</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

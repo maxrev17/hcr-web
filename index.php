@@ -19,6 +19,12 @@ $app->get('/', function() use ($app) {
     ));
 });
 
+$app->get('/robot', function() use ($app) {
+    $app->render('robot.php', array(
+        'title' => 'Robaaadix'
+    ));
+});
+
 // Redeem ticket route
 $app->get('/:code', function($code) use ($app) {
     
