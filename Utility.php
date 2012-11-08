@@ -18,7 +18,7 @@ class Utility {
     }
 
     
-    public static function getPlaintext($string)
+    public static function getDatetime($string)
     {
         $base = 'abcdefghjkmnpqrstwxz23456789';
         $length = strlen($base);
