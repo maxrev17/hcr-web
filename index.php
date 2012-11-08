@@ -8,7 +8,7 @@ Propel::init("models/conf/hcr-conf.php");
 set_include_path("models/classes" . PATH_SEPARATOR . get_include_path());
 
 $app = new \Slim\Slim(array(
-    'debug' => true,
+    'debug' => true
 ));
 
 date_default_timezone_set('Europe/London');
@@ -26,7 +26,16 @@ $app->get('/:code', function($code) use ($app) {
         $ticketArray[] = $o->getCode();
     }
     
-    $app->render('index.php', array('title' => 'Robaaadiks', 'ticketArray' => $ticketArray));
+    $visit_code = $ticketArray[0];
+    $visit_count = count($ticketArray);
+    $visit_date = date("F j, Y, g:i a", Utility::getDatetime($ticketArray[0]));
+    
+    $app->render('index.php', array(
+        'title' => 'Robaaadiks',
+        'visit_code' => $visit_code,
+        'visit_count' => $visit_count,
+        'visit_date' => $visit_date
+    ));
     
 });
 

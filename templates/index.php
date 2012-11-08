@@ -6,9 +6,9 @@
 <?php
 echo '<h1>'.$title.'</h1>';
 echo '<br>';
-echo 'Your unique link code is ' . $ticketArray[0] . ', thanks for clicking!';
+echo 'Your unique link code is ' . $visit_code . ', thanks for clicking!';
 echo '<br>';
-echo 'You have viewed your link ' . count($ticketArray) . ' times!';
+echo 'You have viewed your link ' . $visit_count . ' times!';
 echo '<br>';
-echo 'You spoke with ROBOT at the following time, ' . date("F j, Y, g:i a", Utility::getDatetime($ticketArray[0]));
+echo 'You spoke with ROBOT at the following time, ' . $visit_date;
 ?>
