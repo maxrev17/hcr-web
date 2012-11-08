@@ -13,6 +13,12 @@ $app = new \Slim\Slim(array(
 
 date_default_timezone_set('Europe/London');
 
+$app->get('/', function() use ($app) {
+    $app->render('index.php', array(
+       'title' => 'Robadigz' 
+    ));
+});
+
 // Redeem ticket route
 $app->get('/:code', function($code) use ($app) {
     
@@ -39,7 +45,7 @@ $app->get('/:code', function($code) use ($app) {
     
     
     // Dispatch view with information
-    $app->render('index.php', array(
+    $app->render('code.php', array(
         'title' => 'Robaaadiks',
         'visit_code' => $visit_code,
         'visit_count' => $visit_count,
