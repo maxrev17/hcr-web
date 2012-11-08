@@ -14,22 +14,31 @@ $app = new \Slim\Slim(array(
 date_default_timezone_set('Europe/London');
 
 // Redeem ticket route
-$app->get('/:code', function($code) use ($app) {  
+$app->get('/:code', function($code) use ($app) {
+    
+    // Work out date from code 
+    $date = Utility::getDatetime($code);
+    $formatted_date = date("F j, Y, g:i a", $date);
+    
+    // Create ticket in DB
     $ticket = new Ticket();
     $ticket->setCode($code);
-    $ticket->setCreatedAt(Utility::getDateTime($code));
+    $ticket->setCreatedAt($date);
     $ticket->save();
     
+    // Retrieve all rows with same code
     $output = TicketQuery::create()->findByCode($code);
-    
     foreach($output as $o){
         $ticketArray[] = $o->getCode();
     }
     
+    // Work out info to send to view
     $visit_code = $ticketArray[0];
     $visit_count = count($ticketArray);
-    $visit_date = date("F j, Y, g:i a", Utility::getDatetime($ticketArray[0]));
+    $visit_date = $formatted_date;
     
+    
+    // Dispatch view with information
     $app->render('index.php', array(
         'title' => 'Robaaadiks',
         'visit_code' => $visit_code,
