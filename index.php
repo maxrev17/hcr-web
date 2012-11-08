@@ -15,7 +15,7 @@ date_default_timezone_set('Europe/London');
 
 $app->get('/', function() use ($app) {
     $app->render('index.php', array(
-       'title' => 'Robadigz' 
+       'title' => 'RoboFlop' 
     ));
 });
 
@@ -46,7 +46,7 @@ $app->get('/:code', function($code) use ($app) {
     
     // Dispatch view with information
     $app->render('code.php', array(
-        'title' => 'Robaaadiks',
+        'title' => 'RoboFlop',
         'visit_code' => $visit_code,
         'visit_count' => $visit_count,
         'visit_date' => $visit_date
