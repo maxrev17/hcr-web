@@ -6,7 +6,7 @@
 
       <h1>Thanks for visiting :)!</h1>
       
-      <a href="icrobot.net/c4tha7k">Sample shortcode</a>
+      <a href="/c4tha7k">Sample shortcode</a>
           
     </div> <!-- /container -->
     
