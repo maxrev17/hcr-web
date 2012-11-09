@@ -170,5 +170,4 @@ composer.phar
 #propel
 om/
 map/
-config/
 models/conf/hcr-conf.php

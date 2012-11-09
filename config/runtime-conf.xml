@@ -9,13 +9,13 @@
   </log>
   -->
   <propel>
-    <datasources default="icrobot">
-      <datasource id="icrobot">
+    <datasources default="hcr">
+      <datasource id="hcr">
         <adapter>mysql</adapter> <!-- sqlite, mysql, mssql, oracle, or pgsql -->
         <connection>
-          <dsn>mysql:host=localhost;dbname=icrobot</dsn>
+          <dsn>mysql:host=localhost;dbname=hcr</dsn>
           <user>web</user>
-          <password>GjZS3pvLYbSeydGb</password>
+          <password>robot</password>
         </connection>
       </datasource>
     </datasources>
