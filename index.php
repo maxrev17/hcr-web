@@ -53,16 +53,11 @@ $app->get('/:code', function($code) use ($app) {
     $ticket->save();
     
     // Retrieve all rows with same code
-    $output = TicketQuery::create()->findByCode($code);
-    foreach($output as $o){
-        $ticketArray[] = $o->getCode();
-    }
+    $visit_count = TicketQuery::create()->filterByCode($code)->count();
     
     // Work out info to send to view
-    $visit_code = $ticketArray[0];
-    $visit_count = count($ticketArray);
+    $visit_code = $code;
     $visit_date = $formatted_date;
-    
     
     // Dispatch view with information
     $app->render('code.php', array(
