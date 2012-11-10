@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="icrobot" defaultIdMethod="native">
+  <table name="ticket" phpName="Ticket">
+    <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+    <column name="code" type="varchar" size="255" required="true" />
+    <column name="printed_at" type="timestamp"/>
+    <behavior name="timestampable" />
+    <index>
+        <index-column name="code" />
+    </index>
+  </table>
+</database>
