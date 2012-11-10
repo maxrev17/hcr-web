@@ -170,7 +170,7 @@ composer.phar
 #propel
 om/
 map/
-models/conf
+models/conf/
 config/build.properties
 config/runtime-conf.xml
 
