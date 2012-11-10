@@ -6,7 +6,7 @@
 
       <h1>Thanks for visiting :)!</h1>
       
-      <a href="http://icrobot.net/dfrdp">Sample shortcode</a>
+      <a href="http://<?php echo $_SERVER['SERVER_NAME']?>/eqrfz">Sample shortcode</a>
           
     </div> <!-- /container -->
     

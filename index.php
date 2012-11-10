@@ -42,8 +42,10 @@ $app->get('/:code', function($code) use ($app) {
     $date = '135' . Utility::getDatetime($code);
     $formatted_date = date("F j, Y, g:i a", $date);
 
-    if($date > 1352414128 AND $date < 1356998400){
+    if($date < 1352414128 OR $date > 1356998400){
         // invalid string
+        $app->render('error.php', array('title' => 'Oopsie!'));
+        return false;
     }
     
     // Create ticket in DB

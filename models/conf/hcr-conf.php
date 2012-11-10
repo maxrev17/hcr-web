@@ -4,17 +4,17 @@
 $conf = array (
   'datasources' => 
   array (
-    'hcr' => 
+    'icrobot' => 
     array (
       'adapter' => 'mysql',
       'connection' => 
       array (
-        'dsn' => 'mysql:host=localhost;dbname=hcr',
+        'dsn' => 'mysql:host=localhost;dbname=icrobot',
         'user' => 'web',
         'password' => 'robot',
       ),
     ),
-    'default' => 'hcr',
+    'default' => 'icrobot',
   ),
   'generator_version' => '1.6.7',
 );
