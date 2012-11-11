@@ -14,8 +14,8 @@
         <adapter>mysql</adapter> <!-- sqlite, mysql, mssql, oracle, or pgsql -->
         <connection>
           <dsn>mysql:host=localhost;dbname=icrobot</dsn>
-          <user>USERNAME</user>
-          <password>PASSWORD</password>
+          <user>username</user>
+          <password>password</password>
         </connection>
       </datasource>
     </datasources>
