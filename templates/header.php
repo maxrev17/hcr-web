@@ -43,7 +43,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="../">Robaaticks</a>
+          <a class="brand" href="../">CharityRobot</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
                 <?php 
