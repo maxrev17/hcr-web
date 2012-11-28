@@ -38,6 +38,8 @@ $app->get('/about', function() use ($app) {
 // Redeem ticket route
 $app->get('/:code', function($code) use ($app) {
     
+    $code = strtolower($code);
+    
     // Work out date from code 
     $date = '135' . Utility::getDatetime($code);
     $formatted_date = date("F j, Y, g:i a", $date);
