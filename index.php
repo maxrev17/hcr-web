@@ -40,6 +40,11 @@ $app->get('/:code', function($code) use ($app) {
     
     $code = strtolower($code);
     
+    // Debugging Stuff
+    //echo Utility::getShortcode($code)."<BR>";
+    //echo Utility::getDatetime(Utility::getShortcode($code));
+    //die();    
+    
     // Work out date from code 
     $date = '135' . Utility::getDatetime($code);
     $formatted_date = date("F j, Y, g:i a", $date);
