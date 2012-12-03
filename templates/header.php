@@ -35,7 +35,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-            <p class="navbar-text pull-right">
+            <p class="navbar-text pull-right" style="color: grey;">
               Imperial College London
             </p>
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
