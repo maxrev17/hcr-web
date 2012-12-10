@@ -15,19 +15,19 @@ date_default_timezone_set('Europe/London');
 
 $app->get('/', function() use ($app) {
     $app->render('index.php', array(
-       'title' => 'CHARLES' 
+       'title' => 'Home - CHARLES' 
     ));
 });
 
-$app->get('/robot', function() use ($app) {
-    $app->render('robot.php', array(
-        'title' => 'CHARLES'
+$app->get('/stats', function() use ($app) {
+    $app->render('stats.php', array(
+        'title' => 'Stats - CHARLES'
     ));
 });
 
 $app->get('/about', function() use ($app) {
     $app->render('about.php', array(
-        'title' => 'CHARLES'
+        'title' => 'About - CHARLES'
     ));
 });
 
@@ -70,7 +70,7 @@ $app->get('/:code', function($code) use ($app) {
     
     // Dispatch view with information
     $app->render('code.php', array(
-        'title' => 'CHARLES',
+        'title' => 'Thanks for clicking - CHARLES',
         'visit_code' => $visit_code,
         'visit_count' => $visit_count,
         'visit_date' => $visit_date

@@ -55,9 +55,9 @@
                 ?>
                 <?php 
                 if($_SERVER['REQUEST_URI'] == '/robot') {
-                    echo '<li class="active"><a href="/robot">Robot</a></li>';
+                    echo '<li class="active"><a href="/robot">Stats</a></li>';
                 } else {
-                    echo '<li><a href="/robot">Robot</a></li>';
+                    echo '<li><a href="/stats">Stats</a></li>';
                 }
                 ?>
                  <?php 
