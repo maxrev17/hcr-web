@@ -22,9 +22,11 @@ $app->get('/', function() use ($app) {
 $app->get('/stats', function() use ($app) {
     
     // calculate some stats
+    $hits = TicketQuery::create()->findAll()->count();
         
     $app->render('stats.php', array(
-        'title' => 'Stats - CHARLES'
+        'title' => 'Stats - CHARLES',
+        'site_hits' => $hits
     ));
 });
 
