@@ -8,7 +8,8 @@
         <p>Centralised Human Action Robot Leaflet Effects System. </p>
         <!--<p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
       </div>
-        </div> <!-- container -->
+       
+      </div> <!-- container -->
     
 <?php
     require 'footer.php';
