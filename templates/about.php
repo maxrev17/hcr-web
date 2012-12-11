@@ -73,7 +73,7 @@
                 <h5><a href="https://github.com/maxrev17" target="_blank">Max Revitt</a></h5>
                 Software and web design, often found in a bar somewhere.
                 </p>
-                <img src="../includes/img/revitt2.jpg"/>
+                <img src="../includes/img/revitt3.jpg"/>
             </div>
             <div class="span3" style="min-height:150px;">
                 <p>
