@@ -5,8 +5,8 @@
     <div class="container">
         <div class="page-header">
             <h1>CHARLES</h1>
-            <p>Centralised Human Action Robot Leaflet Effects System, investigating the long term effect of interaction between robot and human.</p>
-            <!--<p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
+            <p>Centralised Human Action Robot Leaflet Effects System, investigating the concept of memorability of an interaction between robot and human.</p>
+            <a href="https://github.com/Sergeus/HCR" target="_blank" class="btn btn-inverse">View project on GitHub &raquo</a>
         </div>
         
         <h3>How we made CHARLES</h3>
@@ -19,7 +19,7 @@
                 <p>
                 In short, we set out to prove our hypothesis: the more interesting and engaging a robot is, 
                 the more people will take a leaflet, and some of those might be interested enough to follow the link to this website.
-                We have named this concept the 'long term interaction', where someone will follow up on their interaction at a later time.
+                We have named this concept the memorability of interaction, where someone will follow up on their interaction at a later time.
                 </p>
         
                 <p>
@@ -40,7 +40,7 @@
         <div class="row">
             <div class="span12">
             <p>
-            We all study Electronic and Information Engineering (formerly Information Systems Engineering) at Imperial College London. The team comprises a wide skill, set from 
+            We all study Electronic and Information Engineering (formerly Information Systems Engineering) at Imperial College London. The team comprises a wide skill set, from 
             electronics and hardware design, to software engineering and web design. 
             The success of this project is down to the effort of all the team members. Find out more about them below.
             </p>
