@@ -49,56 +49,56 @@
         <div class="row">
             <div class="span3" style="min-height:150px;">
                 <p>
-                <h5>Jonathan Ely</h5>
+                <h5><a href="https://github.com/jjonnnyy" target="_blank">Jonathan Ely</a></h5>
                 Software engineering expert, knows everything about Linux.
                 </p>
                 <img src="../includes/img/ely.jpg"/>
             </div>
             <div class="span3" style="min-height:150px;">
                 <p>
-                <h5>Stuart Holland</h5>
+                <h5><a href="https://github.com/Sergeus" target="_blank">Stuart Holland</a></h5>
                 Software engineering expert, hardcore gamer.
                 </p>
                 <img src="../includes/img/holland.jpg"/>
             </div>
             <div class="span3" style="min-height:150px;">
                 <p>
-                <h5>George Pilikos</h5>
+                <h5><a href="https://github.com/georgepil" target="_blank">George Pilikos</a></h5>
                 Kinect specialist, professional cage fighter (don't mess).
                 </p>
                 <img src="../includes/img/pilik2.jpg"/>
             </div>
             <div class="span3" style="min-height:150px;">
                 <p>
-                <h5>Max Revitt</h5>
+                <h5><a href="https://github.com/maxrev17" target="_blank">Max Revitt</a></h5>
                 Software and web design, often found in a bar somewhere.
                 </p>
                 <img src="../includes/img/revitt2.jpg"/>
             </div>
             <div class="span3" style="min-height:150px;">
                 <p>
-                <h5>Chris Socha</h5>
+                <h5><a href="https://github.com/cs2309" target="_blank">Chris Socha</a></h5>
                 Voice recognition man, loves his microphone.
                 </p>
                 <img src="../includes/img/socha.jpg"/>
             </div>
             <div class="span3" style="min-height:150px;">
                 <p>
-                <h5>Chris Tory</h5>
+                <h5><a href="https://github.com/tumblerer" target="_blank">Chris Tory</a></h5>
                 Text to speech expert, chilled out at all times.
                 </p>
                 <img src="../includes/img/tory.jpg"/>
             </div>
             <div class="span3" style="min-height:150px;">
                 <p>
-                <h5>Olivier Van-Goethem</h5>
+                <h5><a href="https://github.com/oliviervg1" target="_blank">Olivier Van-Goethem</a></h5>
                 Software developer, bought CHARLES' coat.
                 </p>
                 <img src="../includes/img/van.jpg"/>
             </div>
             <div class="span3" style="min-height:150px;">
                 <p>
-                <h5>Jonathan Webster</h5>
+                <h5><a href="https://github.com/webbo89" target="_blank">Jonathan Webster</a></h5>
                 Software and web design, serial entrepreneur.
                 </p>
                 <img src="../includes/img/webster.jpg"/>
