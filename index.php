@@ -20,6 +20,9 @@ $app->get('/', function() use ($app) {
 });
 
 $app->get('/stats', function() use ($app) {
+    
+    // calculate some jank stats
+    
     $app->render('stats.php', array(
         'title' => 'Stats - CHARLES'
     ));
