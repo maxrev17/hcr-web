@@ -10,8 +10,10 @@
       </div>
       
       <div class="row">
-          Site hits from tickets handed out: <br>
-          <strong><?php echo $site_hits; ?></strong>
+          <div class="span 4">
+            Site hits from tickets handed out: 
+            <strong><?php echo $site_hits; ?></strong>
+          </div>
       </div>
        
       </div> <!-- container -->
