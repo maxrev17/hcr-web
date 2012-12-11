@@ -68,6 +68,20 @@
                 }
                 ?>
             </ul>
+            <ul class="nav pull-right">
+                <li class="dropdown">
+                    <a href="properties.php?type=showall" class="dropdown-toggle" data-toggle="dropdown">
+                        GitHub
+                        <b class="caret"></b>
+                    </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="https://github.com/Sergeus/HCR" target="_blank">Main ROS Project</a></li>
+                    <li><a href="https://github.com/webbo89/RobotFace" target="_blank">CHARLES' Face</a></li>
+                    <li><a href="https://github.com/webbo89/ncrdriver" target="_blank">Ticket Printer Driver</a></li>
+                    <li><a href="https://github.com/maxrev17/hcr-web" target="_blank">Website</a></li>
+                  </ul>
+                </li>
+          </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
