@@ -30,7 +30,7 @@
             </div>
             <div class="span2 well">
                 <p>Hours spent doing field testing: 
-                <strong>7</strong>
+                <strong>11</strong>
                 </p>
             </div>
         </div>
