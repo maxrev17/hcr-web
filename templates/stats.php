@@ -62,8 +62,8 @@
                 someone ending in the printing of a ticket if the person is interested in finding out more information.
                 </p>
             </div>
-            <div class="span8"
-                <div id="chart_div" style="width: 600px; height: 250px;"></div>
+            <div class="span7"
+                <div id="chart_div" style="width: 700px; height: 400px;"></div>
             </div>
         </div>
         
