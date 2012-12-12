@@ -15,23 +15,31 @@
         </div>
         
         <div class="row">
-            <div class="span2 well">
+            <div class="span3">
+                <div class="well well-small">
                 <p>Total tickets handed out: <strong>150</strong></p>
+                </div>
             </div>
-            <div class="span2 well">
+            <div class="span3">
+                <div class="well well-small">
                 <p>Site hits from tickets handed out: 
                 <strong>29</strong>
                 </p>
+                </div>
             </div>
-            <div class="span2 well">
+            <div class="span3">
+                <div class="well well-small">
                 <p>Average conversion rate:
                 <strong>19%</strong>
                 </p>
+                </div>
             </div>
-            <div class="span2 well">
+            <div class="span3">
+                <div class="well well-small">
                 <p>Hours spent doing field testing: 
                 <strong>11</strong>
                 </p>
+                </div>
             </div>
         </div>
         
