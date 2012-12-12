@@ -253,7 +253,7 @@
             <div class="carousel-caption">
               <h1>CHARLES</h1>
               <p class="lead">Centralised Human Action Robot Leaflet Effects System.</p>
-              <a class="btn btn-large btn-primary" href="/about">Find out more &raquo;</a>
+              <a class="btn btn-large btn-inverse" href="/about">Find out more &raquo;</a>
             </div>
           </div>
         </div>
