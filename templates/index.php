@@ -10,6 +10,7 @@
 
     body {
       padding-bottom: 40px;
+      padding-top: 30px;
       color: #5a5a5a;
     }
 
@@ -247,7 +248,7 @@
     <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
         <div class="item active">
-          <img src="../includes/img/robot_street.jpg" alt="">
+          <img src="../includes/img/grey_robot_pattern.jpg" alt="">
           <div class="container">
             <div class="carousel-caption">
               <h1>CHARLES</h1>
