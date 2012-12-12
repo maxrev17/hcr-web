@@ -68,7 +68,7 @@
       google.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Mode', 'Memorable Interactions'],
+          ['Mode', 'Memorable Interactions %'],
           ['0',  6],
           ['1',  4],
           ['2',  24],
