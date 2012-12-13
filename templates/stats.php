@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="page-header">
-            <h1>Experiment Results</h1>
+            <h1>Experiment Results (All example data)</h1>
             <p>Hypothesis: </p>
         </div>
 
@@ -17,27 +17,27 @@
         <div class="row">
             <div class="span3">
                 <div class="well well-small">
-                <p>Total tickets handed out: <strong>150</strong></p>
+                <p>Total tickets handed out: <strong>c. 70</strong></p>
                 </div>
             </div>
             <div class="span3">
                 <div class="well well-small">
                 <p>Site hits from tickets handed out: 
-                <strong>29</strong>
+                <strong>c. 8</strong>
                 </p>
                 </div>
             </div>
             <div class="span3">
                 <div class="well well-small">
                 <p>Average conversion rate:
-                <strong>19%</strong>
+                <strong>c. 10%</strong>
                 </p>
                 </div>
             </div>
             <div class="span3">
                 <div class="well well-small">
                 <p>Hours spent doing field testing: 
-                <strong>11</strong>
+                <strong>c. 4</strong>
                 </p>
                 </div>
             </div>
@@ -79,8 +79,8 @@
           ['Mode', 'Memorable Interactions %'],
           ['0',  6],
           ['1',  4],
-          ['2',  24],
-          ['3',  28]
+          ['2',  10],
+          ['3',  12]
         ]);
 
         var options = {
