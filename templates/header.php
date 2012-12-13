@@ -53,12 +53,12 @@
                     echo '<li><a href="../">Home</a></li>';
                 }
                 ?>
-                <?php 
+                <?php /*
                 if($_SERVER['REQUEST_URI'] == '/robot') {
                     echo '<li class="active"><a href="/robot">Stats</a></li>';
                 } else {
                     echo '<li><a href="/stats">Stats</a></li>';
-                }
+                } */
                 ?>
                  <?php 
                 if($_SERVER['REQUEST_URI'] == '/about') {
