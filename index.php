@@ -2,10 +2,7 @@
 
 require 'vendor/autoload.php';
 require 'utility.php';
-require_once 'propel/Propel.php';
 
-Propel::init("models/conf/hcr-conf.php");
-set_include_path("models/classes" . PATH_SEPARATOR . get_include_path());
 
 $app = new \Slim\Slim(array(
     'debug' => true
@@ -41,7 +38,7 @@ $app->get('/about', function() use ($app) {
 //});
 
 // Redeem ticket route
-$app->get('/:code', function($code) use ($app) {
+/*$app->get('/:code', function($code) use ($app) {
     
     $code = strtolower($code);
     
@@ -82,7 +79,7 @@ $app->get('/:code', function($code) use ($app) {
     ));
     
 });
-
+*/
 $app->run();
 
 ?>
