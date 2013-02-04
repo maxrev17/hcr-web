@@ -16,13 +16,15 @@ $app->get('/', function() use ($app) {
     ));
 });
 
-$app->get('/stats', function() use ($app) {
+
+
+$app->get('/video', function() use ($app) {
     
     // calculate some stats
     //$hits = TicketQuery::create()->count();
         
-    $app->render('stats.php', array(
-        'title' => 'Stats - CHARLES' //,
+    $app->render('video.php', array(
+        'title' => 'Video - CHARLES' //,
         //'site_hits' => $hits
     ));
 });

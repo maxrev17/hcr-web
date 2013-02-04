@@ -5,6 +5,9 @@
                 Imperial College London <br>
                 Human Centred Robotics
             </p>
+		<p style="font-size:8px">
+		Site by Max Revitt
+		</p>
         </div>
     </footer>
     
